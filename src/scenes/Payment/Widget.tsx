@@ -12,11 +12,13 @@ export const Widget: React.FC<{
           height="269"
           allowFullScreen></iframe>
       </div>
-      <div className="flex flex-col items-center mb-2">
-        <h3 className="text-lg text-center font-medium">
+      <div className="flex flex-col items-center mb-2 rounded-xl text-white bg-[rgba(0,0,0,.7)] p-4">
+        <h3 className="text-[32px] text-center font-medium m-0 p-0">
           {nickname} donated {amount} TON
         </h3>
-        <p className="text-base text-center">{text}</p>
+        <p className="text-base text-center text-[24px] leading-8 mt-2">
+          {text}
+        </p>
       </div>
     </div>
   )
