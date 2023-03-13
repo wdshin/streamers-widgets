@@ -4,7 +4,7 @@ import { Payment } from '../scenes/Payment'
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: '/payment/:userId',
     element: <Payment />,
   },
 ])

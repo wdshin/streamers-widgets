@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import io from 'socket.io-client'
 
 import { IPaymentsEvent } from '../../types/payments'
@@ -6,10 +7,10 @@ import { IPaymentsEvent } from '../../types/payments'
 import { Widget } from './Widget'
 
 const socket = io(process.env.REACT_APP_API_URL || 'http://localhost:1000')
-const USER_ID = 'vlad10'
 const DISPLAY_TIME = 5000
 
 export const Payment = () => {
+  const { userId } = useParams<{ userId: string }>()
   const [isConnected, setIsConnected] = useState(socket.connected)
   const [payment, setPayment] = useState<IPaymentsEvent | null>(null)
   const [queue, setQueue] = useState<IPaymentsEvent[]>([])
@@ -17,8 +18,7 @@ export const Payment = () => {
   useEffect(() => {
     socket.on('connect', () => {
       setIsConnected(true)
-
-      socket.emit('register', USER_ID)
+      socket.emit('register', userId)
     })
 
     socket.on('disconnect', () => {
